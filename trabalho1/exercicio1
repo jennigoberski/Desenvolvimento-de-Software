@@ -1,0 +1,54 @@
+// Nome: Jennifer M. de P. Goberski
+// RGM: 25810723
+// Matéria: Desenvolvimento de Software
+// Data: 13/03/22
+
+/*
+Para cada tipo de dado primitivo, informe:
+(i) o tamanho em bytes
+(ii) faixa de valores  
+(iii) o valor default da variável.
+*/
+
+-> Byte:
+(i) Tamanho em bytes: 1 byte.
+(ii) -128 a 127	
+(iii) 0
+
+-> Short:
+(i) Tamanho em bytes: 2 bytes.
+(ii) -32.768 a 32.767	
+(iii) 0
+
+->  Int: 
+(i) Tamanho em bytes: 4 bytes.
+(ii) -2^31 a 2^31 – 1	
+(iii) 0 
+
+-> Long:
+(i) Tamanho em bytes: 8 bytes.
+(ii) -2^63 a 2^63 -1	
+(iii) 0L
+
+-> Float:
+(i) Tamanho em bytes: 4 bytes.
+(ii) IEEE 754 ±1,40129846432481707e-45 a 3,40282346638528860e+38
+(iii) 0.0f
+
+-> Double:
+(i) Tamanho em bytes: 8 bytes.
+(ii) IEEE 754 ±4,94065645841246544e-324 a 1,79769313486231570e+308	
+(iii) 0.0d
+
+-> Char:
+(i) Tamanho em bytes: 16 bits cada caractere.
+(ii) \u0000 a \uffff (65535)
+(iii) \u0000
+
+-> Boolean:
+(i) Tamanho em bytes: 1 bit.
+(ii) true ou false
+(iii) false
+
+
+
