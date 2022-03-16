@@ -3,13 +3,10 @@ import java.util.Random;
 public class Sorteio {
 
     public static void main(String[] args) {
-        int i=1, soma=0, minimo, maximo, numero=0;
+        int i=0, soma=0, minimo=100, maximo=0, numero=0;
         float media;
         Random gerador = new Random();
 
-        numero = gerador.nextInt(101);
-        maximo = numero;
-        minimo = numero;
 
         while (i < 1000) {
             numero = gerador.nextInt(101);
@@ -23,7 +20,7 @@ public class Sorteio {
             i += 1;
         }
 
-        media = soma/1000;
+        media = soma/1000.0d;
 
         System.out.println("O maior número foi " + maximo);
         System.out.println("O menor número foi " + minimo);
