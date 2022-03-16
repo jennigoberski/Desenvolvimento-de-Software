@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Calendario {
 
     public static String encontraMesIf (int mes) {
-        String nomeMes;
+        String nomeMes = "";
         if (mes == 1) {
            nomeMes = "Janeiro";
         } else if (mes == 2) {
@@ -92,7 +92,7 @@ public class Calendario {
         System.out.println("O mês é (if) " + encontraMesIf(mes));    
         System.out.println("O mês é (switch) " + encontraMesSwitch(mes));    
 
-
+        input.close();
 
     }
     
