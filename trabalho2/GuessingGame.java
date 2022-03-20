@@ -22,6 +22,7 @@ public class GuessingGame {
                 break;
             default:
                 System.out.println("Não entendi sua resposta :( Tente novamente.");
+                System.out.println("");// separar os diálogos
                 confirmAction();
                 break;
         }
@@ -34,7 +35,7 @@ public class GuessingGame {
         System.out.println("As regras são simples: você tem dez tentativas para acertar o número mágico!");
         System.out.println(
                 "Lembrando que o número mágico é um número inteiro positivo entre 0 e 100 (extremos inclusos!)");
-        System.out.println("Parece difícil? Mas não se preocupe, eu vou te dar algumas dicas ;)");
+        System.out.println("Parece difícil? Mas não se preocupe, eu vou te dar algumas dicas ao longo do jogo ;)");
         System.out.println("");// separar os diálogos
 
          confirmAction();
@@ -85,6 +86,7 @@ public class GuessingGame {
         } else {
             System.out.println("Parabéns! Você acertou o número mágico!");
             System.out.println("---------FIM DE JOGO---------");
+            System.out.println("");// separar os diálogos
             controller = 1;
             confirmAction();
         }
