@@ -44,10 +44,8 @@ public class GuessingGame {
 
     public static void playersAttempt() {
         Scanner input = new Scanner(System.in);
-        int playersNumber;
-        int magicNumber;
         Random gerador = new Random();
-        int controller = 0;
+        int playersNumber, magicNumber, controller = 0;
 
         magicNumber = gerador.nextInt(101);
 
