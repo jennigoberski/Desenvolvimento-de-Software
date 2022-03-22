@@ -29,19 +29,6 @@ public class GuessingGame {
         input.close();
     }
 
-    public static void introduction() {
-
-        System.out.println("Bem vindo jogador! Que tal jogar um jogo comigo?");
-        System.out.println("As regras são simples: você tem dez tentativas para acertar o número mágico!");
-        System.out.println(
-                "Lembrando que o número mágico é um número inteiro positivo entre 0 e 100 (extremos inclusos!)");
-        System.out.println("Parece difícil? Mas não se preocupe, eu vou te dar algumas dicas ao longo do jogo ;)");
-        System.out.println("");// separar os diálogos
-
-         confirmAction();
-
-    }
-
     public static void playersAttempt() {
         Scanner input = new Scanner(System.in);
         Random gerador = new Random();
@@ -65,8 +52,9 @@ public class GuessingGame {
                 i = 10;
             }
 
-            if(controller != 1 && i == 9) {
+            if (controller != 1 && i == 9) {
                 System.out.println("Que pena, você perdeu :( O número mágico era " + magicNumber);
+                System.out.println("");// separar os diálogos
                 confirmAction();
             }
         }
@@ -91,7 +79,7 @@ public class GuessingGame {
 
         return controller;
     }
-   
+
     public static void hints(int playersNumber, int magicNumber) {
 
         if (playersNumber < magicNumber) {
@@ -102,8 +90,14 @@ public class GuessingGame {
 
     }
 
-
     public static void main(String[] args) {
-        introduction();
+        System.out.println("Bem vindo jogador! Que tal jogar um jogo comigo?");
+        System.out.println("As regras são simples: você tem dez tentativas para acertar o número mágico!");
+        System.out.println(
+                "Lembrando que o número mágico é um número inteiro positivo entre 0 e 100 (extremos inclusos!)");
+        System.out.println("Parece difícil? Mas não se preocupe, eu vou te dar algumas dicas ao longo do jogo ;)");
+        System.out.println("");// separar os diálogos
+
+        confirmAction();
     }
 }
