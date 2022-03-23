@@ -2,26 +2,32 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BuscaVetor {
-    public static int numbers[] = new int[20];
+    public static int numbers[]= new int[20];
 
     public static void numberArraySorter() {
         Random gerador = new Random();
+        int aux, aux2;
 
-        numbers[0] = gerador.nextInt(101);
+        for (int i = 1; i < numbers.length; i++) {
 
-        for (int i = 1; i < 20; i++) {
+            do {
+                aux = gerador.nextInt(101);
+                aux2 = verifyUserNumber(aux);
 
-            numbers[i] = gerador.nextInt(101);
-            }
+                if(verifyUserNumber(aux) == -1) {
+                   numbers[i] = aux;
+                }
+            } while (aux2 > 0);
+             
             
+        }  
 
     }
 
     public static int verifyUserNumber(int userNumber) {
-        int x = numbers[5];
 
         for (int i = 0; i < 20; i++) {
-            if (numbers[i] == x) {
+            if (numbers[i] == userNumber) {
                 return i;
             }
         }
