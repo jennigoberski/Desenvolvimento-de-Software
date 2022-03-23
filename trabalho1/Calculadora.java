@@ -1,3 +1,5 @@
+package trabalho1;
+
 import java.util.Scanner;
 
 class Calculadora {
