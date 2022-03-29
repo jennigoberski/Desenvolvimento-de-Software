@@ -7,15 +7,20 @@ public class Lottery {
 
     public static void sortNumbers() {
         Random gerador = new Random();
-        int aux, aux2;
+        int aux, aux2, id = 2;
 
-        // sorteando números da loteria
-        for (int i = 0; i < 6; i++) {
-            lotteryNumbers[i] = 1 + gerador.nextInt(60);
+        for (int i = 0; i < lotteryNumbers.length; i++) {
 
-            System.out.print(lotteryNumbers[i] + " ");
+            do {
+                aux = 1 + gerador.nextInt(60);
+                aux2 = verifyEqualNumber(aux, id);
+
+                if (verifyEqualNumber(aux, id) == -1) {
+                    lotteryNumbers[i] = aux;
+                }
+
+            } while (aux2 > 0);
         }
-
     }
 
     public static void compareNumbers() {
@@ -51,35 +56,58 @@ public class Lottery {
         }
     }
 
+    public static int verifyEqualNumber(int aux, int id) {
+
+        if (id == 1) {
+            for (int i = 0; i < userNumbers.length; i++) {
+                if (userNumbers[i] == aux) {
+                    return 1;
+                }
+            }
+        } else if (id == 2) {
+            for (int i = 0; i < lotteryNumbers.length; i++) {
+                if (lotteryNumbers[i] == aux) {
+                    return 1;
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int aux = 0;
+        int aux, id = 1;
 
-        // todo: garantir que não tenha repetições
-        sortNumbers();
-        // Coletando os números do usuário
         for (int i = 0; i < 6; i++) {
-            System.out.printf("Informe o %d número de 1 a 60 que deseja jogar: \n", i + 1);
-            userNumbers[i] = input.nextInt();
+            int result;
 
-            if (userNumbers[i] < 1 || userNumbers[i] > 60) {
+            System.out.printf("\nInforme o %d° número de 1 a 60 que deseja jogar: \n", i + 1);
+            aux = input.nextInt();
+
+            if (aux < 1 || aux > 60) {
                 System.out.println("Número inválido, informe números de 1 a 60.");
+                if (i != 0) {
+                    i--;
+                } else {
+                    main(args);
+                }
+            }
+
+            result = verifyEqualNumber(aux, id);
+
+            if (result == -1) {
+                userNumbers[i] = aux;
+            } else {
                 i--;
             }
 
-            /*
-             * for(int j=i+1;j<6;j++) {
-             * if(aux == lotteryNumbers[j]){
-             * i--;
-             * } else {
-             * lotteryNumbers[i] = aux;
-             * }
-             * }
-             */
         }
+
+        sortNumbers();
 
         compareNumbers();
 
         input.close();
     }
+
 }
