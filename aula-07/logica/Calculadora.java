@@ -6,7 +6,8 @@ public class Calculadora {
         SOMA,
         SUBTRACAO,
         MULTIPLICACAO,
-        DIVISAO
+        DIVISAO,
+        POTENCIA
     }
 
     private double operando1;
@@ -60,8 +61,11 @@ public class Calculadora {
             case DIVISAO:
                 return operando1 / operando2;
 
+            case POTENCIA:
+                return Math.pow(operando1, operando2);
+
             default:
-                return Math.pow(operando1, 2);
+                return Math.pow(operando1, operando2);
         }
     }
 }

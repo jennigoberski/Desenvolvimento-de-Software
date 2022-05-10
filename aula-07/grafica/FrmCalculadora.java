@@ -30,12 +30,38 @@ public class FrmCalculadora extends JFrame {
         this.add(pnlCentro, BorderLayout.CENTER);
 
         JButton btn = new JButton("C");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtDisplay.setText("");
+            }
+        });
         pnlCentro.add(btn);
 
         btn = new JButton("*");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String txtAntigo = txtDisplay.getText();
+                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                calculadora.setOperacao(Operacao.MULTIPLICACAO);
+                calculadora.setAguardando(true);
+                txtDisplay.setText("");
+            }
+        });
         pnlCentro.add(btn);
 
-        btn = new JButton("x²");
+        btn = new JButton("x^y");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String txtAntigo = txtDisplay.getText();
+                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                calculadora.setOperacao(Operacao.POTENCIA);
+                calculadora.setAguardando(true);
+                txtDisplay.setText("");
+            }
+        });
         pnlCentro.add(btn);
 
         btn = new JButton("<");
@@ -81,6 +107,16 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("/");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String txtAntigo = txtDisplay.getText();
+                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                calculadora.setOperacao(Operacao.DIVISAO);
+                calculadora.setAguardando(true);
+                txtDisplay.setText("");
+            }
+        });
         pnlCentro.add(btn);
 
         btn = new JButton("4");
@@ -121,7 +157,7 @@ public class FrmCalculadora extends JFrame {
                 calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
                 calculadora.setOperacao(Operacao.SOMA);
                 calculadora.setAguardando(true);
-                txtDisplay.setText("");
+                txtDisplay.setText("+");
             }
         });
         pnlCentro.add(btn);
@@ -157,9 +193,19 @@ public class FrmCalculadora extends JFrame {
         pnlCentro.add(btn);
 
         btn = new JButton("-");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String txtAntigo = txtDisplay.getText();
+                calculadora.setOperando1(Double.parseDouble(txtAntigo.replace(",", ".")));
+                calculadora.setOperacao(Operacao.SUBTRACAO);
+                calculadora.setAguardando(true);
+                txtDisplay.setText("");
+            }
+        });
         pnlCentro.add(btn);
 
-        btn = new JButton("*/-");
+        btn = new JButton("+/-");
         pnlCentro.add(btn);
 
         btn = new JButton("0");
