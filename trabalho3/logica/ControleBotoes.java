@@ -77,7 +77,7 @@ public class ControleBotoes {
     }
 
     public void zerarSelecoes() {
-        alterarEstadoTodosBotoes(EstadoBotoes.PARES_ENCONTRADOS);
+        alterarEstadoTodosBotoes(EstadoBotoes.NORMAL);
     }
 
     public Boolean isTodasSelecionadas() {
