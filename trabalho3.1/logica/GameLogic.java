@@ -59,6 +59,7 @@ public class GameLogic {
         while(true){
             int rand = new Random().nextInt(8) + 1;
             int aux = 0;
+            //gerar as peças aleatoriamente, e se certificar que não há mais de duas de cada 
             for(int i = 0; i < 4; i++){
                 for(int j = 0; j < 4; j++){
                     if(rand == gameBoard[i][j]){

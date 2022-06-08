@@ -18,6 +18,7 @@ public class Check extends AbstractAction {
 
     private int endGame() {
         int aux = 0;
+        int winGame = 16;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board[i][j].isSelected()) {
@@ -26,12 +27,11 @@ public class Check extends AbstractAction {
             }
         }
         // São 16 casas, então se 16 forem selecionadas, o jogador ganhou.
-        if (aux == 16) {
+        if (aux == winGame) {
             return 1;
         } else {
             return 0;
         }
-
     }
 
     @Override
@@ -40,22 +40,19 @@ public class Check extends AbstractAction {
         int keyNumber = key.getNumber();
         if (game.isWaiting()) {
             if (keyNumber == game.getPiece().getNumber()) {
-                // acertou
                 game.addPoints();
                 game.setisWaiting(false);
                 key.showPiece();
                 if (endGame() == 1) {
-                    JOptionPane.showMessageDialog(null, String.format("Pontuação final %d", game.getPoints()),
+                    JOptionPane.showMessageDialog(null, String.format("Você ganhou! Pontuação final %d", game.getPoints()),
                             "jogo da memória", JOptionPane.INFORMATION_MESSAGE);
                     ;
                 }
                 key.setEnabled(false);
                 game.getPiece().setEnabled(false);
             } else {
-                // errou
                 game.reducePoints();
                 game.setisWaiting(false);
-                // desvira as duas peças
                 key.hidePiece();
                 game.getPiece().hidePiece();
             }

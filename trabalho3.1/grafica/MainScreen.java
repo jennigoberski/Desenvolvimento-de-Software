@@ -15,19 +15,13 @@ public class MainScreen extends JFrame{
         game = new GameLogic();
         board = new GamePiece[4][4];
         setLayout((new GridLayout(5, 4, 4, 5)));
-        carregarPecas();
+        loadGame();
         setSize(new Dimension(300, 300));  
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
 
-        
-        
-        
-    
-
-    private void carregarPecas() {
-        //vincular action ao botao
+    private void loadGame() {
         Check action = new Check(board, game);
      
         for (int i = 0; i < 4; i++){
