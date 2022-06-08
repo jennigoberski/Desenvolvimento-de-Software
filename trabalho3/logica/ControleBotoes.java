@@ -47,7 +47,7 @@ public class ControleBotoes {
         this.referenciaBotoes = referenciaBotoes;
     }
 
-    public void AdicionarBotao(JButton botao) {
+    public void adicionarBotao(JButton botao) {
         this.referenciaBotoes.put(botao, EstadoBotoes.NORMAL);
     }
 

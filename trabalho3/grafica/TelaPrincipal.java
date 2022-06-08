@@ -1,9 +1,11 @@
 package grafica;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,18 +20,11 @@ public class TelaPrincipal extends JFrame {
     private int jogadas = 0;
 
     private JPanel painel;
-    private JButton botao1;
-    private JButton botao2;
-
-    private JButton botaoA;
-    private JButton botaoB;
-
-    private ControleBotoes controle;
-    private ControleBotoes controleA;
 
     private List<logica.ControleBotoes> listaControle;
-
     private List<logica.ControleBotoes> listaSelecionados;
+
+    private ActionListener acaoBotoes;
 
     public TelaPrincipal() {
         super("Jogo da Memória");
@@ -37,7 +32,7 @@ public class TelaPrincipal extends JFrame {
         listaControle = new ArrayList<>();
         listaSelecionados = new ArrayList<>();
 
-        ActionListener acaoBotoes = (new ActionListener() {
+        acaoBotoes = (new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton botao = (JButton) e.getSource();
@@ -66,52 +61,59 @@ public class TelaPrincipal extends JFrame {
             }
         });
 
-        controle = new ControleBotoes();
-        controle.setNmBotao("Churros");
-
-        controleA = new ControleBotoes();
-        controleA.setNmBotao("Picolé");
-
         painel = new JPanel();
         this.add(painel);
         painel.setLayout(null);
 
-        botao1 = new JButton("Botão 1");
-        painel.add(botao1);
-        botao1.setBounds(10, 10, 100, 100);
-
-        botao1.addActionListener(acaoBotoes);
-
-        botao2 = new JButton("Botão 2");
-        painel.add(botao2);
-        botao2.setBounds(120, 10, 100, 100);
-
-        botao2.addActionListener(acaoBotoes);
-
-        botaoA = new JButton("Botão 3");
-        painel.add(botaoA);
-        botaoA.setBounds(10, 110, 100, 100);
-
-        botaoA.addActionListener(acaoBotoes);
-
-        botaoB = new JButton("Botão 4");
-        painel.add(botaoB);
-        botaoB.setBounds(120, 110, 100, 100);
-        botaoB.addActionListener(acaoBotoes);
-
-        this.setBounds(250, 100, 350, 350);
-
-        this.controle.AdicionarBotao(botao1);
-        this.controle.AdicionarBotao(botao2);
-
-        this.controleA.AdicionarBotao(botaoA);
-        this.controleA.AdicionarBotao(botaoB);
-
-        this.listaControle.add(controle);
-        this.listaControle.add(controleA);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        criarJogo(8);
+        this.setBounds(250,250,500,500);
         this.setVisible(true);
+
+    }
+
+    private void criarJogo(int qtPares) {
+        ControleBotoes controle = null;
+
+        List<Rectangle> posicionamentos = new ArrayList<>();
+        int posX = 10;
+        int posY = 10;
+        Random rand = new Random();
+    
+        int j = 0;
+
+        for (int i = 0; i < (qtPares * 2); i++) {
+            // Randomizar o posicionamento dos botões
+            Rectangle rec = new Rectangle(posX, posY, 75, 75);
+            posicionamentos.add(rec);
+            if (i % 5 == 0 && i > 0) {
+                posY += 80;
+                posX = 10;
+            } else {
+                posX += 80;
+            }
+        }
+            
+        for (int i = 0; i < (qtPares * 2); i++) {
+            if (i % 2 == 0) {
+                j++;
+                controle = new ControleBotoes();
+                controle.setNmBotao("Botão " + j);
+                this.listaControle.add(controle);
+            }
+
+            JButton botao = new JButton("?");
+            this.painel.add(botao);
+            botao.addActionListener(this.acaoBotoes);
+
+            int pos = rand.nextInt(((posicionamentos.size() - 1) > 0) ? posicionamentos.size() - 1 : 1);
+            System.out.println(pos);
+            botao.setBounds(posicionamentos.get(pos));
+            posicionamentos.remove(pos);
+            
+            controle.adicionarBotao(botao);
+        }
+            
     }
 
 }
