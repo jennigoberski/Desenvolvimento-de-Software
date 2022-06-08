@@ -57,17 +57,17 @@ public class GameLogic {
     }
     private int getBoardFilled() {
         while(true){
-            int number = new Random().nextInt(9);
+            int rand = new Random().nextInt(8) + 1;
             int aux = 0;
             for(int i = 0; i < 4; i++){
                 for(int j = 0; j < 4; j++){
-                    if(number == gameBoard[i][j]){
+                    if(rand == gameBoard[i][j]){
                         aux++;
                     }
                 }
             }
             if(aux < 2){
-                return number;
+                return rand;
             }
         }
     }
