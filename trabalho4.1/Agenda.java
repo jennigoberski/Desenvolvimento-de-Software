@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 public class Agenda {
     public static void main(String[] args) throws ParseException {
-        Scanner input = new Scanner(System.in);
         List<Pessoa> pessoas = new ArrayList<Pessoa>();
+        Scanner input = new Scanner(System.in);
         int opcaoUsuario = -1, encontrado = -1;
 
         while (opcaoUsuario != 0) {
+            
             System.out.println("-----------Lista de Contatos-----------");
             System.out.println("   ( 1 ) Cadastrar contato  ");
             System.out.println("   ( 2 ) Listar contatos  ");
@@ -51,6 +52,8 @@ public class Agenda {
                     for (Pessoa pessoa : pessoas) {
                         if (pessoa.getNome().equals(nomeUsuario)) {
                             pessoa = EditarContatos.editarContato(pessoa);
+                        } else {
+                            System.out.println("Contato não encontrado!\n");
                         }
                     }
                     break;

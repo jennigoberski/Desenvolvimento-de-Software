@@ -93,8 +93,6 @@ public class CadastroContatos {
 
         p.getEnderecoComercial().put("enderecoComercial", enderecoComercial);
 
-        //teclado.close();
-
         return p;
     }
 }
