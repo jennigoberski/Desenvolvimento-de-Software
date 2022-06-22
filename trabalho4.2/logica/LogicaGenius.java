@@ -1,3 +1,5 @@
+package logica;
+
 public class LogicaGenius {
     private int piscar;
     private int pontos;
@@ -14,6 +16,10 @@ public class LogicaGenius {
 
     public int getPontos() {
         return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
 
     public void somarPontos() {

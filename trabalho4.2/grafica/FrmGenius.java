@@ -1,5 +1,6 @@
+package grafica;
+
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,9 @@ import javax.swing.Timer;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import logica.LogicaGenius;
+import logica.GeniusPrincipal;
 
 public class FrmGenius extends JPanel implements ActionListener, MouseListener {
     LogicaGenius logica = new LogicaGenius();
@@ -46,6 +50,7 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
         logica.setPiscar(0);
         tempoBrilho = 0;
         tempoEscuro = 2;
+        logica.setPontos(0);
         logica.setSequenciaCriada(true);
     }
 
@@ -58,11 +63,6 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
 
             if (tempoEscuro >= 0) {
                 tempoEscuro--;
-            }
-
-            if (logica.isSequenciaCriada()) {
-                logica.setPiscar(random.nextInt(3) + 1);
-                sequencia.add(logica.getPiscar());
             }
         }
 
@@ -77,13 +77,13 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
                     logica.setPiscar(sequencia.get(indiceCor));
                     indiceCor++;
                 }
-
                 tempoEscuro = 2;
             }
         } else if (indiceCor == sequencia.size()) {
             logica.setSequenciaCriada(true);
             indiceCor = 0;
             tempoEscuro = 2;
+            logica.somarPontos();  
         }
         this.repaint();
     }
@@ -91,7 +91,7 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        //se o jogo no main foi criado, pinta o tabuleiro
         if (GeniusPrincipal.genius != null) {
             GeniusPrincipal.genius.paint((Graphics2D) g);
         }
@@ -100,7 +100,7 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
 
     public void paint(Graphics2D g) {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
+        //criando os quadrados
         if (logica.getPiscar() == 1) {
             g.setColor(Color.green);
         } else {
@@ -129,23 +129,12 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
         }
         g.fillRect(300, 300, 300, 300);
 
-        g.setColor(Color.BLACK);
-        g.fillRoundRect(150, 150, 300, 300, 250, 250);
-        g.fillRect(300 - 600 / 12, 0, 600 / 7, 600);
-        g.fillRect(0, 300 - 600 / 12, 600, 600 / 7);
-
-        if (logica.getFimdeJogo()) {
-            JOptionPane.showMessageDialog(null,
-                    String.format("Fim de jogo! Sua pontuação final foi: %d", logica.getPontos()), "Genius",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         int largura = e.getX(), altura = e.getY();
-
+        //encontrando os quadrados e piscando a cor
         if (logica.isSequenciaCriada() == false && logica.getFimdeJogo() == false) {
             if (largura > 0 && largura < 300 && altura > 0 && altura < 300) {
                 // área vermelha no plano cartesiano
@@ -165,15 +154,20 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
                 tempoBrilho = 1;
             }
 
+            //se já piscou comparar o tamanho da sequencia com o brilhos e ver se ganhou ou não
             if (logica.getPiscar() != 0) {
                 if (sequencia.get(indiceCor) == logica.getPiscar()) {
                     indiceCor++;
-                    logica.somarPontos();
                 } else {
                     logica.setFimDeJogo(true);
+                    JOptionPane.showMessageDialog(this,
+                            String.format("Fim de jogo! Sua pontuação final foi: %d", logica.getPontos()), "Genius",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    System.exit(0);
                 }
             }
         } else if (logica.getFimdeJogo()) {
+            //se ainda não piscou, inicia o jogo
             iniciarJogo();
             logica.setFimDeJogo(false);
         }
