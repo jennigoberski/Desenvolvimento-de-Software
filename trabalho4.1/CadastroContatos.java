@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class CadastroContatos {
+    public static Scanner teclado = new Scanner(System.in);
     public static Pessoa cadastrarContato() throws ParseException {
-        Scanner teclado = new Scanner(System.in);
 
         System.out.println("Informe o nome:  ");
         String nome = teclado.nextLine();
