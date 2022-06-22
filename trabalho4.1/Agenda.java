@@ -1,4 +1,9 @@
-
+/*
+ * Jennifer M. de P. Goberski
+ * RGM: 25810723
+ * Maria Luiza Carniel Domingues
+ * RGM: 27106209 
+ */
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,10 +69,15 @@ public class Agenda {
                     System.out.println("Informe o nome do contato a ser excluído: ");
                     String nomePesquisa = input.nextLine();
 
-                    for (Pessoa pessoa : pessoas) {
-                        if (pessoa.getNome().equals(nomePesquisa)) {
-                            encontrado = 1;
-                            pessoas.remove(pessoa);
+                    if (pessoas.size() == 1) {
+                        encontrado = 1;
+                        pessoas.clear();
+                    } else {
+                        for (Pessoa pessoa : pessoas) {
+                            if (pessoa.getNome().equals(nomePesquisa)) {
+                                encontrado = 1;
+                                pessoas.remove(pessoa);
+                            }
                         }
                     }
 

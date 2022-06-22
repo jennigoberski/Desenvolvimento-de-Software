@@ -1,3 +1,10 @@
+/*
+ * Jennifer M. de P. Goberski
+ * RGM: 25810723
+ * Maria Luiza Carniel Domingues
+ * RGM: 27106209 
+ */
+
 package logica;
 
 import grafica.FrmGenius;

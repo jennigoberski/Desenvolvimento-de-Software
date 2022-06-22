@@ -55,40 +55,6 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        tempoBrilho++;
-
-        if (tempoBrilho % 20 == 0) {
-            logica.setPiscar(0);
-
-            if (tempoEscuro >= 0) {
-                tempoEscuro--;
-            }
-        }
-
-        if (logica.isSequenciaCriada()) {
-            if (tempoEscuro <= 0) {
-                if (indiceCor >= sequencia.size()) {
-                    logica.setPiscar(random.nextInt(40) % 4 + 1);
-                    sequencia.add(logica.getPiscar());
-                    indiceCor = 0;
-                    logica.setSequenciaCriada(false);
-                } else {
-                    logica.setPiscar(sequencia.get(indiceCor));
-                    indiceCor++;
-                }
-                tempoEscuro = 2;
-            }
-        } else if (indiceCor == sequencia.size()) {
-            logica.setSequenciaCriada(true);
-            indiceCor = 0;
-            tempoEscuro = 2;
-            logica.somarPontos();  
-        }
-        this.repaint();
-    }
-
-    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //se o jogo no main foi criado, pinta o tabuleiro
@@ -172,6 +138,40 @@ public class FrmGenius extends JPanel implements ActionListener, MouseListener {
             logica.setFimDeJogo(false);
         }
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        tempoBrilho++;
+
+        if (tempoBrilho % 20 == 0) {
+            logica.setPiscar(0);
+
+            if (tempoEscuro >= 0) {
+                tempoEscuro--;
+            }
+        }
+
+        if (logica.isSequenciaCriada()) {
+            if (tempoEscuro <= 0) {
+                if (indiceCor >= sequencia.size()) {
+                    logica.setPiscar(random.nextInt(40) % 4 + 1);
+                    sequencia.add(logica.getPiscar());
+                    indiceCor = 0;
+                    logica.setSequenciaCriada(false);
+                } else {
+                    logica.setPiscar(sequencia.get(indiceCor));
+                    indiceCor++;
+                }
+                tempoEscuro = 2;
+            }
+        } else if (indiceCor == sequencia.size()) {
+            logica.setSequenciaCriada(true);
+            indiceCor = 0;
+            tempoEscuro = 2;
+            logica.somarPontos();  
+        }
+        this.repaint();
     }
 
     @Override
